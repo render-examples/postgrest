@@ -1,0 +1,23 @@
+services:
+  - type: web
+    plan: free
+    name: postgrest
+    env: docker
+    envVars:
+      - key: PGRST_DB_URI
+        fromDatabase:
+          name: postgrest-db
+          property: connectionString
+      - key: PGRST_DB_SCHEMA
+        value: public
+      - key: PGRST_DB_ANON_ROLE
+        fromDatabase:
+          name: postgrest-db
+          property: user
+
+databases:
+  - name: postgrest-db
+    plan: free
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: from anywhere
