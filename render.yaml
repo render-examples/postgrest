@@ -3,6 +3,7 @@ services:
     plan: free
     name: postgrest
     env: docker
+    autoDeploy: false
     envVars:
       - key: PGRST_DB_URI
         fromDatabase:
